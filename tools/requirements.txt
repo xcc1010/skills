@@ -1,0 +1,3 @@
+# Optional. The tooling runs with zero dependencies (built-in frontmatter
+# parser), but installing PyYAML enables full YAML parsing.
+PyYAML>=6.0

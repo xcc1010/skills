@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://skillhub.internal/schema/skill.schema.json",
+  "title": "Skill frontmatter spec (step-1 default — REPLACE with your internal spec)",
+  "description": "Canonical definition of a skill's SKILL.md frontmatter. This is one of the two swap points: replace this file with your organization's real skill spec and update tools/lint.py to match.",
+  "type": "object",
+  "required": ["name", "description", "version", "owner"],
+  "additionalProperties": true,
+  "properties": {
+    "name": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "maxLength": 64,
+      "description": "kebab-case identifier; must equal the skill's directory name"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1024,
+      "description": "What it does and WHEN to use it. The harness selects skills by this text, so invest here."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Semantic version. Bump on every change so the hub can pin and roll back."
+    },
+    "owner": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Team or person accountable for this skill. Drives anti-rot and audit."
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Optional discovery tags."
+    },
+    "allowed-tools": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Optional least-privilege tool allowlist. Declared here, ENFORCED by the harness — not by the hub."
+    }
+  }
+}

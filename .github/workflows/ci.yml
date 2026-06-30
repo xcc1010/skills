@@ -1,0 +1,32 @@
+name: skillhub-ci
+
+on:
+  pull_request:
+  push:
+    branches: [main, master]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      # PyYAML is optional — the tooling falls back to a built-in parser — but
+      # install it so CI validates against full YAML.
+      - run: pip install pyyaml
+
+      - name: Lint skills
+        run: python tools/lint.py
+
+      - name: Rebuild catalog and ensure it is committed
+        run: |
+          python tools/build_catalog.py
+          if ! git diff --quiet -- catalog/; then
+            echo "::error::catalog/ is out of date. Run 'python tools/build_catalog.py' and commit the result."
+            git --no-pager diff -- catalog/
+            exit 1
+          fi
