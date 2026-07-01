@@ -10,3 +10,6 @@ Thumbs.db
 
 # Office temp lock files
 ~$*
+
+# Versioned/intermediate deck drafts — only the canonical skillhub-insight.pptx is tracked
+skillhub-insight-*.pptx
