@@ -13,3 +13,6 @@ Thumbs.db
 
 # Versioned/intermediate deck drafts — only the canonical skillhub-insight.pptx is tracked
 skillhub-insight-*.pptx
+pandawiki-deploy/**/*.tar
+pandawiki-deploy/**/*.tar.gz
+pandawiki-deploy/**/*.part-*
