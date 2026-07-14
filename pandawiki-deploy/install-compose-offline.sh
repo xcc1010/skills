@@ -3,10 +3,11 @@
 # PandaWiki 需要 compose 编排 12 个服务，必须先装它。
 #
 # 用法：
-#   1) 在能上网的机器上下载对应架构的二进制：
-#        x86_64 : docker-compose-linux-x86_64
-#        arm64  : docker-compose-linux-aarch64
-#      来源：https://github.com/docker/compose/releases/latest
+#   1) 在能上网的机器上下载二进制：
+#        x86_64(已随本仓库 Release 提供, v2.29.7):
+#          https://github.com/xcc1010/skills/releases/download/offline-bundles/docker-compose-linux-x86_64
+#          sha256: 383ce6698cd5d5bbf958d2c8489ed75094e34a77d340404d9f32c4ae9e12baf0
+#        arm64(需自取): https://github.com/docker/compose/releases/latest → docker-compose-linux-aarch64
 #   2) 把该文件拷进内网，与本脚本放同目录，重命名为 docker-compose（或用 $1 传路径）
 #   3) sudo bash install-compose-offline.sh [docker-compose二进制路径]
 set -euo pipefail
