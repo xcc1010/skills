@@ -23,7 +23,11 @@ echo "   docker server: ${DOCKER_V}"
 if docker compose version >/dev/null 2>&1; then
   echo "   compose: $(docker compose version --short 2>/dev/null || echo '?')"
 else
-  echo "!! 未检测到 'docker compose' (v2)，请安装 Docker Compose 2.0.0+"; exit 1
+  echo "!! 未检测到 'docker compose' (v2)。"
+  echo "   离线环境请用同目录脚本安装 compose 插件(单个静态二进制)："
+  echo "     sudo bash install-compose-offline.sh <docker-compose二进制路径>"
+  echo "   下载来源(在能上网的机器)：https://github.com/docker/compose/releases/latest"
+  exit 1
 fi
 
 # 4) 连通性提示（不阻塞：离线环境请改用 README 的路径 B）
