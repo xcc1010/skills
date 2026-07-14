@@ -25,9 +25,15 @@ PandaWiki【对话模型】Base URL 填:
 import os, ssl, urllib.parse, http.client
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
-UPSTREAM = os.environ.get("UPSTREAM", "https://CHANGE_ME")
-PORT     = int(os.environ.get("PORT", "8080"))
-INSECURE = os.environ.get("INSECURE") == "1"
+# ===================== 直接改这三行即可 =====================
+UPSTREAM = "https://CHANGE_ME"   # 模型主机地址,只到主机名,不带路径。例: https://model.abc.com
+PORT     = 8080                  # 桥监听端口,一般不用改
+INSECURE = False                 # 模型是自签名证书报错时改成 True
+# ==========================================================
+# (可选)若设了同名环境变量,则覆盖上面的值——不用可无视
+UPSTREAM = os.environ.get("UPSTREAM", UPSTREAM)
+PORT     = int(os.environ.get("PORT", PORT))
+INSECURE = (str(os.environ.get("INSECURE", "1" if INSECURE else "0")) == "1")
 
 _u    = urllib.parse.urlparse(UPSTREAM)
 HTTPS = (_u.scheme == "https")
